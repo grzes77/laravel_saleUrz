@@ -12,5 +12,33 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.homeRooms');
+});
+
+Route::resource('/homeRooms', 'HomeRoomsController');
+Route::resource('/homeLectures', 'HomeLecturersController');
+
+Auth::routes();
+
+
+Route::group(['middleware' => 'acl',
+    'roles' => 'administrator'
+], function () {
+    Route::resource('/users', 'UsersController');
+    Route::resource('/buildings', 'BuildingsController');
+    Route::resource('/rooms', 'RoomsController');
+    Route::resource('/faculties', 'FacultiesController');
+    Route::resource('/events', 'EventsController');
+    Route::resource('/typeRooms', 'TypeRoomsController');
+    Route::resource('/fieldStudies', 'FieldStudiesController');
+});
+
+
+Route::group(['middleware' => 'acl',
+    'roles' => 'prowadzacy'
+], function () {
+
+
+
+
 });
