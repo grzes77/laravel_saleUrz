@@ -19,9 +19,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class,'role_user', 'user_id', 'role_id');
+    }
+
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class);
     }
 
     public function isRole($role)
@@ -29,6 +35,7 @@ class User extends Authenticatable
         return $this->roles()->where('name',$role)->count();
 
     }
+
 
     public function hasAnyRoles($roles)
     {

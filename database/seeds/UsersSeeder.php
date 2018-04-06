@@ -22,7 +22,6 @@ class UsersSeeder extends Seeder
         $user->surname = $faker->lastName();
         $user->academy_degree = $faker->title();
         $user->email = 'admin@admin.com';
-        $user->role_id = 0;
         $user->password = bcrypt('admin');
         $user->save();
 
@@ -32,7 +31,6 @@ class UsersSeeder extends Seeder
         $user->surname = $faker->lastName();
         $user->academy_degree = $faker->title();
         $user->email = 'user@user.com';
-        $user->role_id = 0;
         $user->password = bcrypt('user');
         $user->save();
 
@@ -42,7 +40,6 @@ class UsersSeeder extends Seeder
         $user->surname = $faker->lastName();
         $user->academy_degree = $faker->title();
         $user->password = bcrypt('login');
-        $user->role_id = 0;
         $user->save();
 
 

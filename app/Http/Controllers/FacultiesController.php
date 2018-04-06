@@ -28,7 +28,7 @@ class FacultiesController extends Controller
      */
     public function create()
     {
-        //
+        return view('faculties.create');
     }
 
     /**
@@ -39,7 +39,9 @@ class FacultiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $faculty = Faculty::create($request->all());
+
+        return redirect(route('faculties.index'));
     }
 
     /**
@@ -82,8 +84,9 @@ class FacultiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faculty $faculty)
     {
-        //
+        $faculty->delete();
+        return redirect(route('faculties.index'));
     }
 }

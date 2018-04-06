@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Faculty;
 use App\Field_study;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,10 @@ class FieldStudiesController extends Controller
      */
     public function create()
     {
-        //
+
+       return view('field_studies.create',[
+          'faculties' => Faculty::all()
+       ]);
     }
 
     /**
@@ -39,7 +43,11 @@ class FieldStudiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+        $field_study = Field_study::create($request->all());
+
+        return redirect(route('fieldStudies.index'));
     }
 
     /**

@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.homeRooms');
-});
+//Route::get('/', function () {
+//    redirect('homeRooms');
+//});
+
+Route::resource('/', 'HomeRoomsController');
 
 Route::resource('/homeRooms', 'HomeRoomsController');
 Route::resource('/homeLectures', 'HomeLecturersController');

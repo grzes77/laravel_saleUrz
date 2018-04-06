@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Building;
 use App\Room;
+use App\Type_room;
 use Illuminate\Http\Request;
 
 class RoomsController extends Controller
@@ -28,7 +30,14 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        //
+        $builds = Building::all();
+        $type_rooms = Type_room::all();
+
+        return view('rooms.create',[
+            'builds' => $builds,
+             'type_rooms' => $type_rooms
+                ]);
+
     }
 
     /**
@@ -39,7 +48,10 @@ class RoomsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $rooms = Room::create($request->all());
+
+        return redirect(route('rooms.index'));
     }
 
     /**
@@ -82,8 +94,9 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Room $room)
     {
-        //
+        $room->delete();
+        return redirect(route('roles.index'));
     }
 }

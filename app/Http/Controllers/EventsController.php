@@ -29,7 +29,11 @@ class EventsController extends Controller
      */
     public function create()
     {
-        //
+        $faculties = Faculty::all();
+
+        return view('events.create',[
+           'faculties' => $faculties
+        ]);
     }
 
     /**
@@ -40,7 +44,9 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = Event::create($request->all());
+
+        return redirect(route('events.index'));
     }
 
     /**
@@ -83,8 +89,9 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        return redirect(route('events.index'));
     }
 }

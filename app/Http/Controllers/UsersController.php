@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UsersRequest;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,7 @@ class UsersController extends Controller
     {
         $users = User::paginate(10);
 
-        return view('user.index',[
+        return view('users.index',[
             'users' => $users
         ]);
     }
@@ -28,7 +30,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+
+        return view('users.create',
+            ['roles'=> $roles]
+        );
     }
 
     /**
@@ -37,9 +43,16 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+
+        $user = User::create($data);
+
+//        $user->roles()->attach($request->$data['role_id']);
+
+        return redirect( route('users.index') );
     }
 
     /**
@@ -82,8 +95,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect(route('users.index'));
     }
 }

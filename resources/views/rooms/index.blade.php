@@ -7,7 +7,7 @@
     <table class="table table-hover">
         <tr>
             <th>numer</th>
-            <th>id budynku</th>
+            <th>nazwa budynku</th>
             <th>liczba miejsc</th>
             <th>powierzchnia</th>
             <th>liczba komp</th>
@@ -18,7 +18,7 @@
         @foreach($rooms as $room)
             <tr>
                 <td>{{$room->number}}</td>
-                <td>{{$room->buildings_id}}</td>
+                <td>{{$room->building->name_build}}</td>
                 <td>{{$room->numbers_of_seats}}</td>
                 <td>{{$room->surface}}</td>
                 <td>{{$room->numbers_of_computers}}</td>

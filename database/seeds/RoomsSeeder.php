@@ -11,13 +11,19 @@ class RoomsSeeder extends Seeder
      */
     public function run()
     {
-        $events_data = ['programowanie', 'algorytmy', 'angielski', 'programowanie zespołowe'];
+        $faker = \Faker\Factory::create('pl_PL');
 
-        foreach ($events_data as $event_date) {
-            $event = new \App\Event();
-            $event->name_events = $event_date;
-            $event->faculty_id = 1;
-            $event->save();
+        for($i=1; $i< 20 ; $i++) {
+            $room = new \App\Room();
+            $room->number = $faker->numberBetween(100,500);
+            $room->building_id = $faker->numberBetween(1,20);
+            $room->type_romms_id = $faker->numberBetween(1,3);
+            $room->numbers_of_seats = $faker->numberBetween(1,100);
+            $room->surface = $faker->numberBetween(1,100);
+            $room->numbers_of_computers = $faker->numberBetween(1,10);
+            $room->additional_equipment = 'brak';
+            $room->addition_information = 'brak';
+            $room->save();
         }
     }
 }

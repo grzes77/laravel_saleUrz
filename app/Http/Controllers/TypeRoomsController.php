@@ -28,7 +28,7 @@ class TypeRoomsController extends Controller
      */
     public function create()
     {
-        //
+        return view('type_rooms.create');
     }
 
     /**
@@ -39,7 +39,9 @@ class TypeRoomsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type_room = Type_room::create($request->all());
+
+        return redirect(route('typeRooms.index'));
     }
 
     /**
@@ -82,8 +84,9 @@ class TypeRoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Type_room $type_room)
     {
-        //
+        $type_room->delete();
+        return redirect(route('typeRooms.index'));
     }
 }

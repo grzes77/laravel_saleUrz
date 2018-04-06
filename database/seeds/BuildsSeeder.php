@@ -20,6 +20,7 @@ class BuildsSeeder extends Seeder
             $build->post_code = $faker->postcode();
             $build->city = $faker->city();
             $build->adress = $faker->address();
+            $build->faculty_id = $faker->numberBetween(1,12);
             $build->save();
 
 

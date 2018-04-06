@@ -20,6 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -80,7 +82,7 @@
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="{{route('users.create')}}">użytkownik</a>
                                         <a class="dropdown-item" href="{{route('rooms.create')}}">Sala</a>
-                                        <a class="dropdown-item" href="{{route('users.create')}}">Budynek</a>
+                                        <a class="dropdown-item" href="{{route('buildings.create')}}">Budynek</a>
                                         <a class="dropdown-item" href="{{route('faculties.create')}}">Wydzial</a>
                                         <a class="dropdown-item" href="{{route('events.create')}}">Przedmiot</a>
                                         <a class="dropdown-item" href="{{route('typeRooms.create')}}">Rodzaj Sali</a>
@@ -218,6 +220,8 @@
 
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 </html>

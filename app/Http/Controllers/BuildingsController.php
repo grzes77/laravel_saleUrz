@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Building;
+use App\Faculty;
 use Illuminate\Http\Request;
 
 class BuildingsController extends Controller
@@ -28,7 +29,11 @@ class BuildingsController extends Controller
      */
     public function create()
     {
-        //
+        $faculties =Faculty::all();
+
+        return view('building.create',[
+           'faculties' => $faculties
+        ]);
     }
 
     /**
@@ -39,7 +44,10 @@ class BuildingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $buildings = Building::create($request->all());
+
+        return redirect(route('buildings.index'));
+
     }
 
     /**
@@ -82,8 +90,9 @@ class BuildingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Building $building)
     {
-        //
+        $building->delete();
+        return redirect(route('buildings.index'));
     }
 }

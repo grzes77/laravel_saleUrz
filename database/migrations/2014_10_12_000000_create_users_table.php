@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('academy_degree');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('role_id');
             $table->rememberToken();
             $table->timestamps();
         });
