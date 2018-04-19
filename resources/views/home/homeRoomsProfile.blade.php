@@ -30,4 +30,7 @@
 
     </table>
 
+    {!! $calendar->calendar() !!}
+    {!! $calendar->script() !!}
+
     @endsection

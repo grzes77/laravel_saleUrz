@@ -18,6 +18,8 @@ class UsersController extends Controller
     {
         $users = User::paginate(10);
 
+
+
         return view('users.index',[
             'users' => $users
         ]);
@@ -51,6 +53,8 @@ class UsersController extends Controller
         $user = User::create($data);
 
 //        $user->roles()->attach($request->$data['role_id']);
+
+
 
         return redirect( route('users.index') );
     }

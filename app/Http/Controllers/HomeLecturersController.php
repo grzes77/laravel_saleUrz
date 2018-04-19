@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Faculty;
 use App\Field_study;
+use App\Reservation;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class HomeLecturersController extends Controller
 {
@@ -91,10 +93,41 @@ class HomeLecturersController extends Controller
     public function show($id)
     {
 
+
+        $revervation = Reservation::where('user_id', $id)->with('event','room')->get();
+
+        //dd($revervation);
+
+        $event = [];
+
+
+        foreach( $revervation as $reserv) {
+
+
+            $event[] = Calendar::event(
+                "Przedmiot: ".$reserv->event->name_events."         Sala: ".$reserv->room->number, //event title
+                $reserv->event->name_events,
+                false, //full day event?
+                $reserv->started, //start time (you can also use Carbon instead of DateTime)
+                $reserv->ended, //end time (you can also use Carbon instead of DateTime)
+                'stringEventId', //optionally, you can specify an event ID
+                [
+
+                ]
+
+            );
+        }
+
+        $calendar = Calendar::addEvents($event)->setOptions([
+            'defaultView' => 'agendaWeek',
+
+        ]);
         $lectures = User::where('id', $id)->get();
 
+
         return view('home.homeLecturesProfile', [
-            'lectures' => $lectures
+            'lectures' => $lectures,
+            'calendar' => $calendar
         ]);
     }
 

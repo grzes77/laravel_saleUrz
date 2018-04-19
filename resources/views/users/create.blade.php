@@ -11,7 +11,17 @@
                 @endforeach
             </ul>
         </div>
+
+
+
     @endif
+
+
+
+
+
+
+
 
 
 
@@ -20,11 +30,12 @@
     <form action="{{route('users.store')}}" method="post">
         {{csrf_field()}}
 
-        <div class="form-group row">
+        <div class="form-group row has-success">
             <label for="example-name-input" class="col-2 col-form-label">Imię</label>
             <div class="col-10">
                 <input placeholder="Podaj swoje imię" type="text" class="form-control valid" name="name" required>
             </div>
+
         </div>
 
 
@@ -46,6 +57,11 @@
             <label for="example-text-input" class="col-2 col-form-label">Email</label>
             <div class="col-10">
                 <input placeholder="podaj maila" type="text" class="form-control valid" name="email" required>
+                @if($errors->first('email'))
+                <div class="alert alert-danger">
+                    {{$errors->first('email')}}
+                </div>
+                @endif
             </div>
         </div>
 
@@ -81,6 +97,8 @@
                 <button class="btn btn-primary">Dodaj</button>
             </div>
         </div>
+
+
 
     </form>
 

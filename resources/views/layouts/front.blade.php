@@ -11,7 +11,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,8 +18,22 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('fullcalendar-3.9.0/lib/cupertino/jquery-ui.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {{--style fullcalendar--}}
+
+
+
+    <link href="{{asset('fullcalendar-3.9.0/fullcalendar.css') }}" rel="stylesheet"></link>
+{{--    <link href="{{asset('fullcalendar-3.9.0/fullcalendar.print.css') }}" rel="stylesheet"></link>--}}
+
+    <script src="{{asset('fullcalendar-3.9.0/lib/moment.min.js') }}"></script>
+    <script src="{{asset('fullcalendar-3.9.0/lib/jquery.min.js') }}"></script>
+{{--    <script src="{{asset('fullcalendar-3.9.0/lib/jquery-ui.custom.min.js') }}"></script>--}}
+
+
+
 
 </head>
 <body>
@@ -36,7 +49,7 @@
             <div class="row">
                 <div class="col-12">
                     <a class="navbar-brand" href="{{route('homeRooms.index')}}">
-                        <img src="img/logoURZ.png" alt="">
+                        <img src="{{ asset('img/logoURZ.png')}}" alt="">
                     </a>
 
                 </div>
@@ -220,6 +233,9 @@
 
     </div>
 </div>
+
+<script src="{{asset('fullcalendar-3.9.0/fullcalendar.js')}}"></script>
+<script src="{{asset('fullcalendar-3.9.0/locale/pl2.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 

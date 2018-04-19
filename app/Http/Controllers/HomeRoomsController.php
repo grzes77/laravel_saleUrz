@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Building;
+use App\EventModel;
 use App\Faculty;
+use App\Reservation;
 use App\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class HomeRoomsController extends Controller
 {
@@ -84,16 +87,47 @@ class HomeRoomsController extends Controller
      * @param string $week
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $week='' )
+    public function show($id )
     {
 
-        $now = Carbon::now()->timezone('Europe/Warsaw');
+        $revervation = Reservation::where('room_id', $id)->with('event')->get();
 
-        $start_week = $now->startOfWeek();
-//        dd();
+        //dd($revervation);
+
+        $event = [];
+
+
+        foreach( $revervation as $reserv) {
+
+
+            $event[] = Calendar::event(
+                $reserv->id." <br/> ".$reserv->event->name_events, //event title
+                $reserv->event->name_events,
+                false, //full day event?
+                $reserv->started, //start time (you can also use Carbon instead of DateTime)
+                $reserv->ended, //end time (you can also use Carbon instead of DateTime)
+                'stringEventId', //optionally, you can specify an event ID
+                [
+
+                ]
+
+            );
+        }
+
+       $calendar = Calendar::addEvents($event)->setOptions([
+           'defaultView' => 'agendaWeek',
+
+       ]);
+
+
+
         $room = Room::where('id', $id)->get();
 
-        return view('home.homeRoomsProfile',['room' =>$room, 'start_week'=> $start_week]);
+        return view('home.homeRoomsProfile',[
+            'room' =>$room,
+            'calendar' => $calendar
+
+        ]);
 
     }
 
